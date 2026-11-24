@@ -1,0 +1,79 @@
+<html manifest="Cache.manifest">
+<head>
+<title>PlayStation Programmer Lab - Avto Exploit GoldHEN PS4</title>
+<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/Arxa.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  .top-bar {
+    position: fixed;
+    top: 20px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+  }
+
+  .top-bar img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  .top-bar span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 3px 3px 5px #000000;
+  }
+
+  .main-title {
+    margin-top: 80px;
+    text-shadow: 4px 4px 4px black;
+    font-size: 30px;
+    text-align: center;
+    color: yellow;
+  }
+
+  #progress {
+    font-size: 25px;
+    text-align: center;
+    text-shadow: 4px 4px 4px black;
+    color: white;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<script>
+history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));setTimeout(function(){window.progress.innerHTML="Offline Keş Quraşdırılır: " + Percent + "%";},500)}
+function DisplayCacheProgress(){setTimeout(function(){window.progress.innerHTML="Səhifə Uğurla Keşləndi!!";},1500);setTimeout(function(){window.progress.innerHTML="Səhifəni Yenidən Açın !!";},3500);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+
+<div class="top-bar">
+  <img src="images/Lab.png" alt="Lab Logo">
+  <span>PlayStation Programmer Lab</span>
+</div>
+
+<h1 class="main-title">PlayStation Programmer Lab Avto Exploit GoldHen PS4 5.05 &amp; 6.72 &amp; (7.XX - 14.02) FW</h1>
+<h1 id="progress">Keşlənir... Gözləyin</h1>
+
+<div class="content">
+  <div class="text"></div>
+</div>
+</body>
+</html>
