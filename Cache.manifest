@@ -1,6 +1,7 @@
-CACHE MANIFEST 
+CACHE MANIFEST
+# 2026-11-24 19:55:00
 
-CACHE: 
+CACHE:
 style.css
 1150_1202.js
 1250_13.js
@@ -12,14 +13,15 @@ exploit7_9.js
 exploit6.js
 exploit5.js
 index.html
+cache.html
 payload.bin
 rpc_worker.js
 worker.js
+images/Arxa.png
+images/Lab.png
 
-NETWORK: 
-* 
+NETWORK:
+*
 
-SETTINGS:  
-prefer-online:  
-
-# 2026-11-15 12:00:00
+SETTINGS:
+prefer-online:
