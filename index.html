@@ -8,6 +8,11 @@
       if (window.applicationCache.status === 0) {window.location.replace("cache.html");}
 </script>
 <style>
+  :root {
+    --neon-blue: #00e5ff;
+    --neon-glow: 0 0 8px rgba(0, 229, 255, 0.85), 0 0 20px rgba(0, 140, 255, 0.65);
+  }
+
   html, body {
     margin: 0;
     padding: 0;
@@ -19,6 +24,7 @@
     background-repeat: no-repeat;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    transition: background-image 0.25s ease-in-out;
   }
 
   .top-bar {
@@ -28,36 +34,60 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: rgba(0, 20, 45, 0.55);
+    border: 1px solid rgba(0, 229, 255, 0.6);
+    box-shadow: var(--neon-glow);
     z-index: 100;
   }
 
   .top-bar img {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8));
   }
 
   .top-bar span {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
-    color: #ffffff;
-    text-shadow: 3px 3px 5px #000000;
+    color: #9ef6ff;
+    text-shadow: var(--neon-glow), 2px 2px 4px #000000;
   }
 
   .main-title {
-    margin-top: 80px;
-    text-shadow: 4px 4px 4px black;
+    margin-top: 85px;
     font-size: 30px;
     text-align: center;
-    color: yellow;
+    color: #7ef2ff;
+    text-shadow: var(--neon-glow), 3px 3px 6px #000000;
   }
 
   #progress {
     font-size: 25px;
     text-align: center;
-    text-shadow: 4px 4px 4px black;
-    color: white;
+    color: #e0fbff;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.7), 3px 3px 6px #000000;
     margin-top: 20px;
+  }
+
+  .ad-banner {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 24px;
+    border-radius: 10px;
+    background: rgba(0, 24, 52, 0.72);
+    border: 1px solid var(--neon-blue);
+    box-shadow: var(--neon-glow);
+    color: #8cf4ff;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.8), 2px 2px 4px #000000;
+    z-index: 100;
   }
 </style>
 </head>
@@ -68,21 +98,39 @@
   <span>PlayStation Programmer Lab</span>
 </div>
 
-<h1 class="main-title">PlayStation Programmer Lab Avto Exploit GoldHen PS4 5.05 &amp; 6.72 &amp; (7.XX - 14.02) FW</h1>
+<h1 class="main-title">PlayStation Programmer Lab Avto Exploit GoldHEN PS4 5.05 &amp; 6.72 &amp; (7.XX - 14.02) FW</h1>
 <h1 id="progress">Jailbreak edilir....</h1><br>
+
+<div id="adBanner" class="ad-banner">REKLAM BANNER • PLAYSTATION PROGRAMMER LAB</div>
 
 <div id="all" class="content">
   <div class="text"></div>
 </div>
 
 <script>
+(function () {
+  var bgKey = "ps4_lab_bg_toggle";
+  var currentState = localStorage.getItem(bgKey);
+  var showAd = currentState === "1";
+
+  if (showAd) {
+    document.body.style.backgroundImage = 'url("images/reklam1.png")';
+    document.getElementById("adBanner").textContent = "REKLAM BANNER • REKLAM 1 AKTİVDİR";
+    localStorage.setItem(bgKey, "0");
+  } else {
+    document.body.style.backgroundImage = 'url("images/Arxa.png")';
+    document.getElementById("adBanner").textContent = "REKLAM BANNER • PLAYSTATION PROGRAMMER LAB";
+    localStorage.setItem(bgKey, "1");
+  }
+})();
+
 var outputConsole = document.getElementById("progress");
 window.log = function (msg, color) {
-      if (color === undefined) color = "#cccccc";
+      if (color === undefined) color = "#8cf4ff";
       outputConsole.innerHTML = '<span style="color:' + color + '">' + msg + '</span><br>';
 };
 window.logger = function (msg, color) {
-      if (color === undefined) color = "#cccccc";
+      if (color === undefined) color = "#8cf4ff";
       outputConsole.innerHTML = '<span style="color:' + color + '">' + msg + '</span><br>';
 };
 window.addEventListener('error', function (event) {
@@ -111,7 +159,7 @@ var fwVersion = isPS4 ? match[1] : "Naməlum";
 var fwNum = parseFloat(fwVersion);
 
 function onScriptError() {
-    progress.innerHTML = "Məzmun tapılmadı! - Brauzer məlumatlarını təmizləyin və Keşi yenidən quraşdırın ...";
+    progress.innerHTML = "Məzmun tapılmadı! - Brauzer məlumatlarını təmizləyin və keşi yenidən quraşdırın...";
 }
 
 if (!isPS4) {
@@ -126,15 +174,15 @@ if (!isPS4) {
 			try {
 				exploit();
 			} catch (error) {
-				window.log("Exploit xətası: " + error, "red");
+				window.log("Exploit xətası: " + error, "#ff5c77");
 			}
 		};
             script.onerror = onScriptError;
             document.head.appendChild(script);
         }
 		else if (fwNum === 6.72) {
-		progress.innerHTML = "GoldHEN v2.4b18.13 yüklənir ...";
-		LoadedMSG = "GoldHEN v2.4b18.13 Yükləndi ✔";
+		progress.innerHTML = "GoldHEN v2.4b18.13 yüklənir...";
+		LoadedMSG = "GoldHEN v2.4b18.13 yükləndi ✔";
 		PLfile = "payload.bin";
 	
 		var script = document.createElement('script');
@@ -144,7 +192,7 @@ if (!isPS4) {
 			try {
 				jailbreak672();
 			} catch (error) {
-				window.log("Exploit xətası: " + error, "red");
+				window.log("Exploit xətası: " + error, "#ff5c77");
 			}
 		};
 	
@@ -152,14 +200,14 @@ if (!isPS4) {
 		document.head.appendChild(script);
 		}
         else if (fwNum >= 7.00 && fwNum <= 9.60) {
-            progress.innerHTML = "GoldHEN v2.4b18.13 yüklənir ...";
+            progress.innerHTML = "GoldHEN v2.4b18.13 yüklənir...";
             var script = document.createElement('script');
             script.src = "exploit7_9.js";
             script.onload = function () {
 			try {
 				doJailBreak();
 			} catch (error) {
-				window.log("Exploit xətası: " + error, "red");
+				window.log("Exploit xətası: " + error, "#ff5c77");
 			}
 		};
             script.onerror = onScriptError;
